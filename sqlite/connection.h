@@ -29,20 +29,20 @@ class query;
 class connection : public i_connection
 {
 public:
-	connection(const std::string &path);
-	~connection();
+    connection(const std::string &path);
+    ~connection();
 
     virtual bool is_ok() const;
     virtual result get_result() const;
     virtual const char* get_error_message();
 
 private:
-	sqlite3 *handle;
+    sqlite3 *handle;
 
-	result result_;
+    result result_;
 
-	friend transaction;
-	friend query;
+    friend transaction;
+    friend query;
 };
 
 }

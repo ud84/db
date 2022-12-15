@@ -26,8 +26,8 @@ namespace sqlite
 class query : public i_query
 {
 public:
-	query(connection &connection_);
-	~query();
+    query(connection &connection_);
+    ~query();
 
     virtual result prepare(const std::string &sql);
     virtual result set(size_t position, int32_t value);
@@ -48,8 +48,8 @@ public:
     virtual void close();
 
 private:
-	connection &connection_;
-	sqlite3_stmt *stmt;
+    connection &connection_;
+    sqlite3_stmt *stmt;
 };
 
 }

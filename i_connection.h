@@ -19,7 +19,7 @@ namespace db
 class i_connection
 {
 public:
-	virtual bool is_ok() const = 0;
+    virtual bool is_ok() const = 0;
     virtual result get_result() const = 0;
     virtual const char* get_error_message() = 0;
 

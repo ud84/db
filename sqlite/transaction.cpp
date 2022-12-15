@@ -19,34 +19,34 @@ namespace sqlite
 
 
 transaction::transaction(connection &connection__)
-	: connection_(connection__), started(false)
+    : connection_(connection__), started(false)
 {
 }
 
 transaction::~transaction()
 {
-	if (started)
-	{
-		rollback();
-	}
+    if (started)
+    {
+        rollback();
+    }
 }
 
 result transaction::start()
 {
-	started = true;
-	return static_cast<result>(sqlite3_exec(connection_.handle, "BEGIN TRANSACTION;", nullptr, nullptr, nullptr));
+    started = true;
+    return static_cast<result>(sqlite3_exec(connection_.handle, "BEGIN TRANSACTION;", nullptr, nullptr, nullptr));
 }
 
 result transaction::commit()
 {
-	started = false;
-	return static_cast<result>(sqlite3_exec(connection_.handle, "COMMIT;", nullptr, nullptr, nullptr));
+    started = false;
+    return static_cast<result>(sqlite3_exec(connection_.handle, "COMMIT;", nullptr, nullptr, nullptr));
 }
 
 result transaction::rollback()
 {
-	started = false;
-	return static_cast<result>(sqlite3_exec(connection_.handle, "ROLLBACK;", nullptr, nullptr, nullptr));
+    started = false;
+    return static_cast<result>(sqlite3_exec(connection_.handle, "ROLLBACK;", nullptr, nullptr, nullptr));
 }
 
 }

@@ -18,30 +18,30 @@ namespace sqlite
 {
 
 connection::connection(const std::string &path)
-	: handle(nullptr), result_(result::OK)
+    : handle(nullptr), result_(result::OK)
 {
-	result_ = static_cast<result>(sqlite3_open(path.c_str(), &handle));
-	sqlite3_busy_timeout(handle, 500);
+    result_ = static_cast<result>(sqlite3_open(path.c_str(), &handle));
+    sqlite3_busy_timeout(handle, 500);
 }
 
 bool connection::is_ok() const
 {
-	return result_ == result::OK;
+    return result_ == result::OK;
 }
 
 result connection::get_result() const
 {
-	return result_;
+    return result_;
 }
 
 const char* connection::get_error_message()
 {
-	return sqlite3_errmsg(handle);
+    return sqlite3_errmsg(handle);
 }
 
 connection::~connection()
 {
-	sqlite3_close(handle);
+    sqlite3_close(handle);
 }
 
 }

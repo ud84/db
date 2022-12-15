@@ -23,19 +23,18 @@ namespace sqlite
 class transaction : public i_transaction
 {
 public:
-	transaction(connection &connection_);
-	~transaction();
+    transaction(connection &connection_);
+    ~transaction();
 
-	result start();
+    result start();
 
     virtual result commit();
     virtual result rollback();
 	
 private:
-	connection &connection_;
+    connection &connection_;
 
-	bool started;
-
+    bool started;
 };
 
 }
