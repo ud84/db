@@ -1,5 +1,5 @@
 /**
- * connection.h - Contains sqlite connection wrapper
+ * connection.h - Contains database connection interface
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *
@@ -11,16 +11,13 @@
 
 #pragma once
 
-#include <string>
-
 #include <db/i_connection.h>
+#include <db/dbms.h>
 
-#include <db/sqlite/sqlite/sqlite3.h>
+#include <string>
+#include <memory>
 
 namespace db
-{
-
-namespace sqlite
 {
 
 class transaction;
@@ -29,23 +26,19 @@ class query;
 class connection : public i_connection
 {
 public:
-    connection(const std::string &path);
+    connection(dbms dbms_, const std::string &conn_info);
     virtual ~connection();
 
     virtual bool is_ok() const final;
     virtual result get_result() const final;
     virtual const char* get_error_message() final;
-    virtual dbms get_dbms() final { return dbms::SQLite; }
+    virtual dbms get_dbms() final;
 
 private:
-    sqlite3 *handle;
-
-    result result_;
+    std::unique_ptr<i_connection> inst;
 
     friend transaction;
     friend query;
 };
-
-}
 
 }

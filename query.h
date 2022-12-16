@@ -1,5 +1,5 @@
 /**
- * query.h - Contains sqlite query wrapper
+ * query.h - Contains database query interface
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *
@@ -11,16 +11,10 @@
 
 #pragma once
 
-#include <cstdint>
-#include <string>
-
+#include <db/connection.h>
 #include <db/i_query.h>
-#include <db/sqlite/connection.h>
 
 namespace db
-{
-
-namespace sqlite
 {
 
 class query : public i_query
@@ -48,10 +42,7 @@ public:
     virtual void close() final;
 
 private:
-    connection &connection_;
-    sqlite3_stmt *stmt;
+    std::unique_ptr<i_query> inst;
 };
-
-}
 
 }

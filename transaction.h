@@ -1,5 +1,5 @@
 /**
- * transaction.h - Contains sqlite transaction wrapper
+ * transaction.h - Contains database transaction interface
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *
@@ -11,32 +11,27 @@
 
 #pragma once
 
+#include <db/connection.h>
 #include <db/i_transaction.h>
-#include <db/sqlite/connection.h>
+
+#include <memory>
 
 namespace db
-{
-
-namespace sqlite
 {
 
 class transaction : public i_transaction
 {
 public:
     transaction(connection &connection_);
-    virtual ~transaction();
+    virtual ~transaction() final;
 
     virtual result start() final;
 
     virtual result commit() final;
     virtual result rollback() final;
-	
+
 private:
-    connection &connection_;
-
-    bool started;
+    std::unique_ptr<i_transaction> inst;
 };
-
-}
 
 }

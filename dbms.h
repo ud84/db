@@ -1,5 +1,5 @@
 /**
- * i_transaction.h - Contains database transaction interface
+ * dbms.h - Contains dbms enumeration
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *
@@ -11,21 +11,13 @@
 
 #pragma once
 
-#include <db/result.h>
-
 namespace db
 {
 
-class i_transaction
+enum class dbms
 {
-public:
-    virtual result start() = 0;
-
-    virtual result commit() = 0;
-    virtual result rollback() = 0;
-	
-    virtual ~i_transaction() {}
-
+    SQLite,
+    PostgreSQL
 };
 
 }

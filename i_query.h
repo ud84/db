@@ -40,8 +40,7 @@ public:
 
     virtual void close() = 0;
 
-protected:
-    ~i_query() {}
+    virtual ~i_query() {}
 };
 
 }
