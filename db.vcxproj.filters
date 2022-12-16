@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\pg">
+      <UniqueIdentifier>{f579e4d9-8560-4a17-ad41-522686173d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\pg">
+      <UniqueIdentifier>{ee09c0c8-ebe0-42e7-84f5-6a4ab6274b2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sqlite">
+      <UniqueIdentifier>{8da907e5-632c-4197-9964-eb1d2fcc51a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sqlite">
+      <UniqueIdentifier>{fa408fb1-8acf-48be-a65f-80c78418dfb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sqlite\connector">
+      <UniqueIdentifier>{96b08fbf-7458-4606-9e2d-c8be42d58211}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\connection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\query.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\transaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sqlite\connection.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sqlite\query.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sqlite\transaction.cpp">
+      <Filter>Source Files\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pg\connection.cpp">
+      <Filter>Source Files\pg</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pg\query.cpp">
+      <Filter>Source Files\pg</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pg\transaction.cpp">
+      <Filter>Source Files\pg</Filter>
+    </ClCompile>
+    <ClCompile Include="dbms\sqlite\shell.c">
+      <Filter>Source Files\sqlite\connector</Filter>
+    </ClCompile>
+    <ClCompile Include="dbms\sqlite\sqlite3.c">
+      <Filter>Source Files\sqlite\connector</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\db\pg\connection.h">
+      <Filter>Header Files\pg</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\pg\query.h">
+      <Filter>Header Files\pg</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\pg\transaction.h">
+      <Filter>Header Files\pg</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\connection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\dbms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\i_connection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\i_query.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\i_transaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\query.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\transaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\sqlite\connection.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\sqlite\query.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\sqlite\transaction.h">
+      <Filter>Header Files\sqlite</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
