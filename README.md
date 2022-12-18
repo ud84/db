@@ -1,0 +1,1 @@
+Ћегковесный коннектор к попул€рным dbms (sqlite, postgres, mysql)
