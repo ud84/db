@@ -24,12 +24,21 @@ bool test_connect(db::connection& conn)
 
 bool test_simple_select(db::connection& conn)
 {
+    db::query q(conn);
+    q.prepare("select id, name, number from users");
+    if (q.step())
+    {
+        return q.get_int64(0) == 1 &&
+            q.get_string(1) == "User Name" &&
+            q.get_double(2) == 123.456;
+    }
+
     return false;
 }
 
 int main(int argc, char *argv[])
 {
-    db::connection conn(db::dbms::SQLite, "D:\\tdlib\\dbaaa.sqlite");
+    db::connection conn(db::dbms::SQLite, "data/sqlite.db");
     
     auto conn_result = test_connect(conn);
     if (!conn_result)
