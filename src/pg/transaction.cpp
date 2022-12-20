@@ -1,5 +1,5 @@
 /**
- * transaction.cpp - Contains sqlite transaction wrapper impl
+ * transaction.cpp - Contains postgres transaction wrapper impl
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *

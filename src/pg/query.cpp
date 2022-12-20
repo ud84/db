@@ -1,5 +1,5 @@
 /**
- * query.cpp - Contains sqlite query wrapper impl
+ * query.cpp - Contains postgres query wrapper impl
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *

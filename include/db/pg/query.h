@@ -1,5 +1,5 @@
 /**
- * query.h - Contains sqlite query wrapper
+ * query.h - Contains postgres query wrapper
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *

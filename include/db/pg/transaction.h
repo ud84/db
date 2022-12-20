@@ -1,5 +1,5 @@
 /**
- * transaction.h - Contains sqlite transaction wrapper
+ * transaction.h - Contains postgres transaction wrapper
  *
  * Author: Anton (ud) Golovkov, udattsk@gmail.com
  *
