@@ -29,8 +29,21 @@ bool test_simple_select(db::connection& conn)
     if (q.step())
     {
         return q.get_int64(0) == 1 &&
-            q.get_string(1) == "User Name" &&
+            q.get_string(1) == "First User" &&
             q.get_double(2) == 123.456;
+    }
+
+    return false;
+}
+
+bool test_params_select(db::connection& conn)
+{
+    db::query q(conn);
+    q.prepare("select id, name, number from users where id = ?");
+    q.set(0, 2);
+    if (q.step())
+    {
+        return q.get_int64(0) == 2;
     }
 
     return false;
@@ -57,6 +70,15 @@ int main(int argc, char *argv[])
         return 0;
     }
     std::cout << "Simple select " << dye::green("[PASS]") << std::endl;
+
+    auto params_select_result = test_params_select(conn);
+    if (!params_select_result)
+    {
+        std::cout << "Params select " << dye::light_red("[FAIL]") << std::endl;
+        std::cout << conn.get_error_message() << std::endl;
+        return 0;
+    }
+    std::cout << "Params select " << dye::green("[PASS]") << std::endl;
 
     return 0;
 }
