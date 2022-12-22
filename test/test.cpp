@@ -36,11 +36,50 @@ bool test_simple_select(db::connection& conn)
     return false;
 }
 
-bool test_params_select(db::connection& conn)
+bool test_int32_param(db::connection& conn)
 {
     db::query q(conn);
     q.prepare("select id, name, number from users where id = ?");
-    q.set(0, 2);
+    q.set(0, static_cast<int32_t>(2));
+    if (q.step())
+    {
+        return q.get_int64(0) == 2;
+    }
+
+    return false;
+}
+
+bool test_int64_param(db::connection& conn)
+{
+    db::query q(conn);
+    q.prepare("select id, name, number from users where id = ?");
+    q.set(0, 123123123456789);
+    if (q.step())
+    {
+        return q.get_string(1) == "Big int ID";
+    }
+
+    return false;
+}
+
+bool test_double_param(db::connection& conn)
+{
+    db::query q(conn);
+    q.prepare("select id, name, number from users where number = ?");
+    q.set(0, 123.456);
+    if (q.step())
+    {
+        return q.get_int64(0) == 1;
+    }
+
+    return false;
+}
+
+bool test_string_param(db::connection& conn)
+{
+    db::query q(conn);
+    q.prepare("select id, name, number from users where name = ?");
+    q.set(0, "Second User");
     if (q.step())
     {
         return q.get_int64(0) == 2;
@@ -71,14 +110,41 @@ int main(int argc, char *argv[])
     }
     std::cout << "Simple select " << dye::green("[PASS]") << std::endl;
 
-    auto params_select_result = test_params_select(conn);
-    if (!params_select_result)
+    auto int32_param_result = test_int32_param(conn);
+    if (!int32_param_result)
     {
-        std::cout << "Params select " << dye::light_red("[FAIL]") << std::endl;
+        std::cout << "Int32 param " << dye::light_red("[FAIL]") << std::endl;
         std::cout << conn.get_error_message() << std::endl;
         return 0;
     }
-    std::cout << "Params select " << dye::green("[PASS]") << std::endl;
+    std::cout << "Int32 param " << dye::green("[PASS]") << std::endl;
+
+    auto int64_param_result = test_int64_param(conn);
+    if (!int64_param_result)
+    {
+        std::cout << "Int64 param " << dye::light_red("[FAIL]") << std::endl;
+        std::cout << conn.get_error_message() << std::endl;
+        return 0;
+    }
+    std::cout << "Int64 param " << dye::green("[PASS]") << std::endl;
+
+    auto double_param_result = test_double_param(conn);
+    if (!double_param_result)
+    {
+        std::cout << "Double param " << dye::light_red("[FAIL]") << std::endl;
+        std::cout << conn.get_error_message() << std::endl;
+        return 0;
+    }
+    std::cout << "Double param " << dye::green("[PASS]") << std::endl;
+
+    auto string_param_result = test_string_param(conn);
+    if (!string_param_result)
+    {
+        std::cout << "String param " << dye::light_red("[FAIL]") << std::endl;
+        std::cout << conn.get_error_message() << std::endl;
+        return 0;
+    }
+    std::cout << "String param " << dye::green("[PASS]") << std::endl;
 
     return 0;
 }
