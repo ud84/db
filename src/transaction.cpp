@@ -25,7 +25,9 @@ transaction::transaction(connection &connection_)
             inst = std::unique_ptr<sqlite::transaction>(new sqlite::transaction(*reinterpret_cast<sqlite::connection*>(connection_.inst.get())));
         break;
         case dbms::PostgreSQL:
+#ifdef _USE_PG
             inst = std::unique_ptr<pg::transaction>(new pg::transaction(*reinterpret_cast<pg::connection*>(connection_.inst.get())));
+#endif
         break;
     }
 }

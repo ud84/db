@@ -25,7 +25,9 @@ connection::connection(dbms dbms_, const std::string &conn_info)
             inst = std::unique_ptr<i_connection>(new sqlite::connection(conn_info));
         break;
         case dbms::PostgreSQL:
+#ifdef _USE_PG
             inst = std::unique_ptr<i_connection>(new pg::connection(conn_info));
+#endif
         break;
     }
 }
@@ -36,7 +38,7 @@ connection::~connection()
 
 bool connection::is_ok() const
 {
-    return inst->is_ok();
+    return inst && inst->is_ok();
 }
 
 result connection::get_result() const

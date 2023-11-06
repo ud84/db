@@ -17,6 +17,13 @@
 #include <db/transaction.h>
 #include <db/query.h>
 
+#ifdef _USE_PG
+
+#pragma comment(lib, "libpq.lib")
+#pragma comment(lib, "postgres.lib")
+
+#endif
+
 bool test_connect(db::connection& conn)
 {
     return conn.is_ok();
@@ -76,6 +83,19 @@ bool test_double_param(db::connection& conn)
 }
 
 bool test_string_param(db::connection& conn)
+{
+    db::query q(conn);
+    q.prepare("select id, name, number from users where name = ?");
+    q.set(0, "Second User");
+    if (q.step())
+    {
+        return q.get_int64(0) == 2;
+    }
+
+    return false;
+}
+
+bool test_transaction(db::connection& conn)
 {
     db::query q(conn);
     q.prepare("select id, name, number from users where name = ?");

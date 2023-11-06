@@ -9,6 +9,8 @@
  * Official repository: https://github.com/ud84/db
  */
 
+#ifdef _USE_PG
+
 #include <db/pg/connection.h>
 
 namespace db
@@ -47,3 +49,5 @@ connection::~connection()
 }
 
 }
+
+#endif

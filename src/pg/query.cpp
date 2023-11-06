@@ -9,6 +9,8 @@
  * Official repository: https://github.com/ud84/db
  */
 
+#ifdef _USE_PG
+
 #include <db/pg/query.h>
 
 namespace db
@@ -119,3 +121,5 @@ void query::close()
 }
 
 }
+
+#endif

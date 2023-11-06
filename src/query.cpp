@@ -25,7 +25,9 @@ query::query(connection &connection_)
             inst = std::unique_ptr<sqlite::query>(new sqlite::query(*reinterpret_cast<sqlite::connection*>(connection_.inst.get())));
         break;
         case dbms::PostgreSQL:
+#ifdef _USE_PG
             inst = std::unique_ptr<pg::query>(new pg::query(*reinterpret_cast<pg::connection*>(connection_.inst.get())));
+#endif
         break;
     }
 }
