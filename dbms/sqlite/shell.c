@@ -30,6 +30,9 @@
 ** This file contains code to implement the "sqlite" command line
 ** utility for accessing SQLite databases.
 */
+
+#ifdef _USE_SQLITE
+
 #if (defined(_WIN32) || defined(WIN32)) && !defined(_CRT_SECURE_NO_WARNINGS)
 /* This needs to come before any includes for MSVC compiler */
 #define _CRT_SECURE_NO_WARNINGS
@@ -26582,3 +26585,5 @@ void fiddle_exec(const char * zSql){
   }
 }
 #endif /* SQLITE_SHELL_FIDDLE */
+
+#endif /* _USE_SQLITE */

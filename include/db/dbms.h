@@ -16,6 +16,8 @@ namespace db
 
 enum class dbms
 {
+    None,
+
     SQLite,
     PostgreSQL
 };

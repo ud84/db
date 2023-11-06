@@ -17,17 +17,32 @@
 namespace db
 {
 
+class dummy_transaction : public i_transaction
+{
+public:
+    virtual result start() { return result::Error; }
+
+    virtual result commit() { return result::Error; }
+    virtual result rollback() { return result::Error; }
+
+};
+
 transaction::transaction(connection &connection_)
 {
     switch (connection_.get_dbms())
     {
+#ifdef _USE_SQLITE
         case dbms::SQLite:
-            inst = std::unique_ptr<sqlite::transaction>(new sqlite::transaction(*reinterpret_cast<sqlite::connection*>(connection_.inst.get())));
+            inst = std::unique_ptr<i_transaction>(new sqlite::transaction(*reinterpret_cast<sqlite::connection*>(connection_.inst.get())));
         break;
-        case dbms::PostgreSQL:
-#ifdef _USE_PG
-            inst = std::unique_ptr<pg::transaction>(new pg::transaction(*reinterpret_cast<pg::connection*>(connection_.inst.get())));
 #endif
+#ifdef _USE_PG
+        case dbms::PostgreSQL:
+            inst = std::unique_ptr<i_transaction>(new pg::transaction(*reinterpret_cast<pg::connection*>(connection_.inst.get())));
+        break;
+#endif
+        default:
+            inst = std::unique_ptr<i_transaction>(new dummy_transaction());
         break;
     }
 }

@@ -9,6 +9,8 @@
  * Official repository: https://github.com/ud84/db
  */
 
+#ifdef _USE_SQLITE
+
 #include <db/sqlite/transaction.h>
 
 namespace db
@@ -52,3 +54,5 @@ result transaction::rollback()
 }
 
 }
+
+#endif // _USE_SQLITE

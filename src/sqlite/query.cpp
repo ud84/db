@@ -9,6 +9,8 @@
  * Official repository: https://github.com/ud84/db
  */
 
+#ifdef _USE_SQLITE
+
 #include <db/sqlite/query.h>
 
 namespace db
@@ -108,3 +110,5 @@ void query::close()
 }
 
 }
+
+#endif // _USE_SQLITE
