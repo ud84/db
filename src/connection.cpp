@@ -25,7 +25,7 @@ class dummy_connection : public i_connection
     virtual dbms get_dbms() { return dbms::None; };
 };
 
-connection::connection(dbms dbms_, const std::string &conn_info)
+connection::connection(dbms dbms_, std::string_view conn_info)
 {
     switch (dbms_)
     {

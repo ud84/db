@@ -19,10 +19,10 @@ namespace db
 namespace pg
 {
 
-connection::connection(const std::string &conninfo)
+connection::connection(std::string_view conninfo)
     : conn(nullptr), result_(result::OK)
 {
-    conn = PQconnectdb(conninfo.c_str());
+    conn = PQconnectdb(conninfo.data());
     result_ = PQstatus(conn) == CONNECTION_OK ? result::OK : result::Error;
 }
 

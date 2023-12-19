@@ -19,10 +19,10 @@ namespace db
 namespace sqlite
 {
 
-connection::connection(const std::string &path)
+connection::connection(std::string_view path)
     : handle(nullptr), result_(result::OK)
 {
-    result_ = static_cast<result>(sqlite3_open(path.c_str(), &handle));
+    result_ = static_cast<result>(sqlite3_open(path.data(), &handle));
     sqlite3_busy_timeout(handle, 500);
 }
 

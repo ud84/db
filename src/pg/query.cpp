@@ -29,7 +29,7 @@ query::~query()
     close();
 }
 
-result query::prepare(const std::string &sql)
+result query::prepare(std::string_view sql)
 {
     //return static_cast<result>(sqlite3_prepare_v3(connection_.handle, sql.c_str(), static_cast<int>(sql.size()), 0, &stmt, nullptr));
     return result::OK;
@@ -53,7 +53,7 @@ result query::set(size_t position, double value)
     return result::OK;
 }
 
-result query::set(size_t position, const std::string &value)
+result query::set(size_t position, std::string_view value)
 {
     //return static_cast<result>(sqlite3_bind_text(stmt, static_cast<int>(position + 1), value.data(), static_cast<int>(value.size()), SQLITE_TRANSIENT));
     return result::OK;

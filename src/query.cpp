@@ -20,11 +20,11 @@ namespace db
 class dummy_query : public i_query
 {
 public:
-    virtual result prepare(const std::string &) { return result::Error; }
+    virtual result prepare(std::string_view) { return result::Error; }
     virtual result set(size_t, int32_t) { return result::Error; }
     virtual result set(size_t, int64_t) { return result::Error; }
     virtual result set(size_t, double) { return result::Error; }
-    virtual result set(size_t, const std::string &) { return result::Error; }
+    virtual result set(size_t, std::string_view) { return result::Error; }
     virtual result set_null(size_t) { return result::Error; }
 
     virtual bool step() { return false; }
@@ -64,7 +64,7 @@ query::~query()
 {
 }
 
-result query::prepare(const std::string &sql)
+result query::prepare(std::string_view sql)
 {
     return inst->prepare(sql);
 }
@@ -84,7 +84,7 @@ result query::set(size_t position, double value)
     return inst->set(position, value);
 }
 
-result query::set(size_t position, const std::string &value)
+result query::set(size_t position, std::string_view value)
 {
     return inst->set(position, value);
 }
